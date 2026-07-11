@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maestro de los Números Enteros</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f7fb;
+    text-align:center;
+    padding:30px;
+}
+
+h1{
+    color:#1565c0;
+}
+
+.contenedor{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+#ejercicio{
+    font-size:2rem;
+    margin:30px;
+}
+
+input{
+    font-size:1.2rem;
+    padding:10px;
+    width:120px;
+    text-align:center;
+}
+
+button{
+    padding:10px 20px;
+    font-size:1rem;
+    margin-left:10px;
+    cursor:pointer;
+}
+
+#resultado{
+    font-size:1.2rem;
+    margin-top:20px;
+    min-height:30px;
+}
+
+.marcador{
+    display:flex;
+    justify-content:space-around;
+    margin-top:20px;
+    font-weight:bold;
+}
+
+progress{
+    width:100%;
+    height:25px;
+    margin-top:20px;
+}
+
+#insignia{
+    font-size:1.4rem;
+    margin-top:20px;
+    color:green;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<h1>🏆 Maestro de los Números Enteros</h1>
+
+<p>Resuelve las operaciones y consigue insignias.</p>
+
+<div id="ejercicio"></div>
+
+<input type="number" id="respuesta">
+
+<button onclick="comprobar()">
+Comprobar
+</button>
+
+<div id="resultado"></div>
+
+<div class="marcador">
+<div>Aciertos: <span id="aciertos">0</span></div>
+<div>Errores: <span id="errores">0</span></div>
+<div>Puntos: <span id="puntos">0</span></div>
+</div>
+
+<progress id="barra" value="0" max="30"></progress>
+
+<div id="insignia"></div>
+
+</div>
+
+<script>
+
+let solucion;
+let puntos = 0;
+let aciertos = 0;
+let errores = 0;
+
+function numeroAleatorio(){
+    return Math.floor(Math.random()*21)-10;
+}
+
+function generarEjercicio(){
+
+    let a = numeroAleatorio();
+    let b = numeroAleatorio();
+
+    const tipo = Math.floor(Math.random()*3);
+
+    if(tipo===0){
+        solucion = a + b;
+        document.getElementById("ejercicio").innerHTML =
+        `${a} + (${b}) = ?`;
+    }
+
+    else if(tipo===1){
+        solucion = a - b;
+        document.getElementById("ejercicio").innerHTML =
+        `${a} - (${b}) = ?`;
+    }
+
+    else{
+        a = Math.floor(Math.random()*11)-5;
+        b = Math.floor(Math.random()*11)-5;
+
+        solucion = a*b;
+
+        document.getElementById("ejercicio").innerHTML =
+        `(${a}) × (${b}) = ?`;
+    }
+}
+
+function comprobar(){
+
+    let respuesta =
+    Number(document.getElementById("respuesta").value);
+
+    let resultado =
+    document.getElementById("resultado");
+
+    if(respuesta===solucion){
+
+        aciertos++;
+        puntos+=2;
+
+        resultado.innerHTML =
+        "✅ ¡Correcto!";
+
+    }else{
+
+        errores++;
+
+        resultado.innerHTML =
+        `❌ Incorrecto. La respuesta era ${solucion}`;
+
+    }
+
+    document.getElementById("aciertos").textContent =
+    aciertos;
+
+    document.getElementById("errores").textContent =
+    errores;
+
+    document.getElementById("puntos").textContent =
+    puntos;
+
+    document.getElementById("barra").value =
+    Math.min(puntos,30);
+
+    mostrarInsignia();
+
+    document.getElementById("respuesta").value="";
+
+    generarEjercicio();
+}
+
+function mostrarInsignia(){
+
+    let texto="";
+
+    if(puntos>=30){
+
+        texto="👑 Maestro de los Enteros";
+
+    }else if(puntos>=20){
+
+        texto="🥇 Experto en Enteros";
+
+    }else if(puntos>=10){
+
+        texto="⭐ Explorador Matemático";
+
+    }
+
+    document.getElementById("insignia").innerHTML =
+    texto;
+}
+
+generarEjercicio();
+
+</script>
+
+</body>
+</html>
