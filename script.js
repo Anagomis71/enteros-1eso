@@ -7,9 +7,25 @@ function numeroAleatorio() {
     return Math.floor(Math.random() * 21) - 10;
 }
 
+let selectedModo = 'dos';
+
+function setModo(modo) {
+    selectedModo = modo;
+    // actualizar estado visual
+    document.querySelectorAll('.actividad-box').forEach(box => {
+        const m = box.getAttribute('data-modo');
+        if (m === modo) {
+            box.classList.add('selected');
+            box.setAttribute('aria-pressed', 'true');
+        } else {
+            box.classList.remove('selected');
+            box.setAttribute('aria-pressed', 'false');
+        }
+    });
+}
+
 function generarEjercicio() {
-    const modoElem = document.getElementById('actividad');
-    const modo = modoElem ? modoElem.value : 'dos';
+    const modo = selectedModo || 'dos';
     const mixtoElem = document.getElementById('mixto');
     const mixto = mixtoElem ? mixtoElem.checked : false;
 
@@ -112,11 +128,11 @@ function mostrarInsignia() {
     document.getElementById('insignia').innerHTML = texto;
 }
 
-// Regenerar ejercicio al cambiar la actividad
-const modoElem = document.getElementById('actividad');
-if (modoElem) {
-    modoElem.addEventListener('change', function () {
-        // resetear la respuesta visible y estilo
+// Selector por cajas: click y teclado
+document.querySelectorAll('.actividad-box').forEach(box => {
+    box.addEventListener('click', function () {
+        const modo = box.getAttribute('data-modo');
+        setModo(modo);
         const resultado = document.getElementById('resultado');
         if (resultado) {
             resultado.innerHTML = '';
@@ -124,7 +140,16 @@ if (modoElem) {
         }
         generarEjercicio();
     });
-}
+    box.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            box.click();
+        }
+    });
+});
+
+// Inicializar modo visual
+setModo(selectedModo);
 
 // Regenerar cuando se cambia el checkbox mixto
 const mixtoElem2 = document.getElementById('mixto');

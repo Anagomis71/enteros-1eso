@@ -18,12 +18,15 @@
 
 <div id="ejercicio"></div>
 
-<div class="actividad">
-	<label for="actividad">Actividad:</label>
-	<select id="actividad">
-		<option value="dos">Dos números</option>
-		<option value="tres">Tres números</option>
-	</select>
+<div class="panel-actividades" aria-label="Selecciona actividad">
+	<div class="actividad-box selected" data-modo="dos" id="actividad-dos" tabindex="0" role="button" aria-pressed="true">
+		<h3>Dos números</h3>
+		<p>Sumas, restas y multiplicaciones</p>
+	</div>
+	<div class="actividad-box" data-modo="tres" id="actividad-tres" tabindex="0" role="button" aria-pressed="false">
+		<h3>Tres números</h3>
+		<p>Operaciones con tres enteros (puedes activar mixto)</p>
+	</div>
 </div>
 
 <input type="number" id="respuesta">

@@ -107,3 +107,53 @@ progress{
 #reset:hover{
     background:#d5d5d5;
 }
+
+/* Panel de actividades rosa chicle */
+.panel-actividades{
+    background: #ff77b3; /* rosa chicle */
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: stretch;
+    margin: 12px 0 18px 0;
+}
+
+.actividad-box{
+    background: #fff6fb;
+    border: 2px solid rgba(0,0,0,0.08);
+    border-radius: 10px;
+    padding: 14px 18px;
+    width: 180px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+    transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+    text-align: left;
+}
+
+.actividad-box h3{
+    margin: 0 0 6px 0;
+}
+
+.actividad-box p{
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.actividad-box:hover{
+    transform: translateY(-4px);
+}
+
+.actividad-box.selected{
+    border-color: #ff2d8a;
+    box-shadow: 0 8px 18px rgba(255,45,138,0.12);
+    background: #fff0f7;
+    transform: translateY(-6px) scale(1.02);
+}
+
+/* Focus keyboard */
+.actividad-box:focus{
+    outline: 3px solid rgba(255,255,255,0.5);
+}
