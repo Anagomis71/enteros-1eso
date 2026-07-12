@@ -98,6 +98,23 @@ function comprobar() {
         puntos += 2;
         resultado.innerHTML = '✅ ¡Correcto!';
         resultado.classList.add('correcto');
+        // mostrar aplausos animados
+        const aplausos = document.getElementById('aplausos');
+        if (aplausos) {
+            aplausos.innerHTML = '';
+            for (let i = 0; i < 3; i++) {
+                const span = document.createElement('span');
+                span.className = 'aplausos-emoji';
+                span.textContent = '👏';
+                // stagger delay
+                span.style.animationDelay = (i * 120) + 'ms';
+                aplausos.appendChild(span);
+                // trigger show after append
+                setTimeout(() => span.classList.add('show'), 20 + i * 120);
+            }
+            // limpiar después
+            setTimeout(() => { aplausos.innerHTML = ''; }, 1400);
+        }
     } else {
         errores++;
         resultado.innerHTML = `❌ Incorrecto. La respuesta era ${solucion}`;
@@ -107,6 +124,8 @@ function comprobar() {
     document.getElementById('aciertos').textContent = aciertos;
     document.getElementById('errores').textContent = errores;
     document.getElementById('puntos').textContent = puntos;
+    const puntosGrande = document.getElementById('puntos-grande');
+    if (puntosGrande) puntosGrande.textContent = puntos;
     document.getElementById('barra').value = Math.min(puntos, 30);
 
     mostrarInsignia();
@@ -173,6 +192,8 @@ function reiniciarMarcador() {
     document.getElementById('aciertos').textContent = aciertos;
     document.getElementById('errores').textContent = errores;
     document.getElementById('puntos').textContent = puntos;
+    const puntosGrande2 = document.getElementById('puntos-grande');
+    if (puntosGrande2) puntosGrande2.textContent = puntos;
     document.getElementById('barra').value = 0;
     document.getElementById('insignia').innerHTML = '';
 

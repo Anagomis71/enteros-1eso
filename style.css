@@ -1,6 +1,6 @@
 body{
     font-family: 'Comic Neue', "Comic Sans MS", "Comic Sans", ComicSans, cursive;
-    background:#ffffff;
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
     text-align:center;
     padding:30px;
 }
@@ -156,4 +156,51 @@ progress{
 /* Focus keyboard */
 .actividad-box:focus{
     outline: 3px solid rgba(255,255,255,0.5);
+}
+
+/* Marcador grande */
+#marcador-grande{
+    background: rgba(255,255,255,0.9);
+    border-radius: 12px;
+    padding: 10px 16px;
+    display: inline-block;
+    margin: 10px 0 14px 0;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+#marcador-grande .label{
+    font-size:0.9rem;
+    color:#666;
+}
+
+#puntos-grande{
+    font-size:2.6rem;
+    font-weight:700;
+    color:#ff2d8a;
+    margin-top:6px;
+}
+
+/* Aplausos */
+#aplausos{
+    position: relative;
+    height: 48px;
+    margin-top: 10px;
+}
+
+.aplausos-emoji{
+    font-size: 28px;
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(0) scale(0.9);
+}
+
+.aplausos-emoji.show{
+    animation: aplaudir 900ms ease-out forwards;
+}
+
+@keyframes aplaudir{
+    0% { opacity: 0; transform: translateX(-50%) translateY(10px) scale(0.8); }
+    40% { opacity: 1; transform: translateX(-50%) translateY(-8px) scale(1.12); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-40px) scale(0.9); }
 }
