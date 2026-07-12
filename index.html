@@ -18,11 +18,25 @@
 
 <div id="ejercicio"></div>
 
+<div class="actividad">
+	<label for="actividad">Actividad:</label>
+	<select id="actividad">
+		<option value="dos">Dos números</option>
+		<option value="tres">Tres números</option>
+	</select>
+</div>
+
 <input type="number" id="respuesta">
+
+<div class="opciones">
+	<label><input type="checkbox" id="mixto"> Operadores mixtos</label>
+</div>
 
 <button onclick="comprobar()">
 Comprobar
 </button>
+
+<button id="reset" type="button">Reiniciar marcador</button>
 
 <div id="resultado"></div>
 
